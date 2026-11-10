@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de control para micro y pequeñas empresas en CODE. Administra diagnósticos, solicitudes y conecta con estudiantes de tecnología.">
+  <title>Panel de Pequeña Empresa — CODE</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/matching.js" defer></script>
+  <script src="../js/dashboard.js" defer></script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Barra Lateral de Navegación -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-brand">
+        <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+        <div class="sidebar-user-preview">
+          <span class="user-role-badge">Panel Empresa</span>
+          <strong id="sidebar-company-name">Café Origen Andino</strong>
+          <small id="sidebar-company-meta">Bogotá • Gastronomía</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Navegación del panel empresarial">
+        <ul>
+          <li><a href="#section-metrics" class="sidebar-nav-item is-active"><span class="nav-icon">📊</span> Resumen General</a></li>
+          <li><a href="#section-requests" class="sidebar-nav-item"><span class="nav-icon">📝</span> Mis Solicitudes</a></li>
+          <li><a href="#section-diagnostics" class="sidebar-nav-item"><span class="nav-icon">🩺</span> Diagnósticos</a></li>
+          <li><a href="#section-candidates" class="sidebar-nav-item"><span class="nav-icon">🎓</span> Candidatos Afines</a></li>
+          <li class="nav-divider"></li>
+          <li><a href="diagnostico.html" class="sidebar-nav-item"><span class="nav-icon">➕</span> Nuevo Diagnóstico</a></li>
+          <li><a href="oportunidades.html" class="sidebar-nav-item"><span class="nav-icon">🌐</span> Ver Catálogo Público</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="sidebar-nav-item"><span class="nav-icon">🏠</span> Volver a Inicio</a>
+      </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <div class="dashboard-content-area">
+      <!-- Barra Superior del Panel -->
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button class="btn-menu-toggle sidebar-toggle" id="btn-menu-toggle" aria-label="Alternar menú lateral" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+          <div class="user-greeting" id="user-greeting">
+            <h1>Bienvenido, Café Origen Andino</h1>
+            <p>Monitorea el avance de tus proyectos de digitalización y talento vinculado.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a href="diagnostico.html" class="btn btn-sm btn-primary">+ Realizar Diagnóstico</a>
+          <button type="button" id="btn-logout" class="btn btn-sm btn-outline-danger">Cerrar Sesión</button>
+        </div>
+      </header>
+
+      <!-- Contenido Principal -->
+      <main class="dashboard-main">
+        <!-- Métricas Rápidas -->
+        <section class="metrics-grid" id="section-metrics" aria-label="Métricas del negocio">
+          <div class="metric-card">
+            <span class="metric-label">Solicitudes Publicadas</span>
+            <strong class="metric-value" id="company-stat-requests">1</strong>
+            <span class="metric-trend">Necesidad activa en plataforma</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Diagnósticos Completados</span>
+            <strong class="metric-value" id="company-stat-diagnostics">1</strong>
+            <span class="metric-trend">Nivel de Madurez: Inicial</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Estudiantes Conectados</span>
+            <strong class="metric-value" id="company-stat-connections">2</strong>
+            <span class="metric-trend">Postulaciones en evaluación</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Inversión Estimada Total</span>
+            <strong class="metric-value" id="company-stat-budget">$900.000 COP</strong>
+            <span class="metric-trend">Presupuesto acordado</span>
+          </div>
+        </section>
+
+        <!-- Formulario Colapsable para Nueva Solicitud -->
+        <section class="section-card" id="section-new-request">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Publicar Nueva Necesidad Digital</h2>
+              <p>Si ya conoces tu requerimiento, puedes registrarlo directamente sin pasar por el asistente.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-toggle-request-form">
+              + Abrir Formulario de Solicitud
+            </button>
+          </div>
+
+          <form id="form-company-request" class="request-form" hidden novalidate>
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="req-title">Título de la Necesidad Tecnológica: *</label>
+                <input type="text" id="req-title" name="title" class="form-control" placeholder="Ej. Catálogo digital con pedido directo a WhatsApp" required>
+              </div>
+              <div class="form-group col-half">
+                <label for="req-sector">Sector del Negocio: *</label>
+                <select id="req-sector" name="sector" class="form-control" required>
+                  <option value="Gastronomía" selected>Gastronomía</option>
+                  <option value="Comercio Minorista">Comercio Minorista</option>
+                  <option value="Manufactura">Manufactura Local</option>
+                  <option value="Servicios">Servicios Locales</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="req-problem">¿Cuál es el problema que deseas solucionar?: *</label>
+              <textarea id="req-problem" name="problem" class="form-control" rows="2" placeholder="Ej. Perdemos tiempo enviando fotos y listas de precios individuales a cada cliente por WhatsApp." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="req-solution">Solución que esperas recibir del estudiante: *</label>
+              <textarea id="req-solution" name="solution" class="form-control" rows="2" placeholder="Ej. Un menú web interactivo donde el cliente arme su orden y se genere el mensaje formateado de WhatsApp." required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="req-budget">Presupuesto Estimado en COP: *</label>
+                <input type="text" id="req-budget" name="budget" class="form-control" placeholder="Ej. $850.000 COP" required>
+              </div>
+              <div class="form-group col-half">
+                <label for="req-deadline">Tiempo de Entrega Esperado: *</label>
+                <select id="req-deadline" name="deadline" class="form-control" required>
+                  <option value="2 a 3 semanas">2 a 3 semanas</option>
+                  <option value="3 a 4 semanas" selected>3 a 4 semanas</option>
+                  <option value="4 a 6 semanas">4 a 6 semanas</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="btn-submit-request">Publicar Necesidad en la Plataforma</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Lista de Solicitudes Publicadas -->
+        <section class="section-card" id="section-requests">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Mis Solicitudes de Digitalización</h2>
+              <p>Requerimientos técnicos registrados por tu empresa y su estado actual.</p>
+            </div>
+          </div>
+          <div class="requests-list" id="company-requests-container">
+            <!-- Renderizado dinámico vía js/dashboard.js -->
+          </div>
+        </section>
+
+        <!-- Historial de Diagnósticos Generados -->
+        <section class="section-card" id="section-diagnostics">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Historial de Diagnósticos Digitales</h2>
+              <p>Evaluaciones completadas con sus recomendaciones y puntajes de madurez.</p>
+            </div>
+          </div>
+          <div class="diagnostics-history" id="company-diagnostics-container">
+            <!-- Renderizado dinámico vía js/dashboard.js -->
+          </div>
+        </section>
+
+        <!-- Candidatos Recomendados para Conexión -->
+        <section class="section-card" id="section-candidates">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Talento Estudiantil Compatible</h2>
+              <p>Estudiantes con alta afinidad técnica en las tecnologías que tu proyecto necesita.</p>
+            </div>
+          </div>
+          <div class="candidates-grid" id="company-candidates-container">
+            <!-- Renderizado dinámico vía js/matching.js & js/dashboard.js -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

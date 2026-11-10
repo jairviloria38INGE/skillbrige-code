@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CODE — Conectando micro y pequeñas empresas colombianas con estudiantes de tecnología para acelerar su transformación digital con proyectos viables y presupuestos en COP.">
+  <title>CODE — Conexión entre MiPyMes y Talento Tecnológico | Colombia</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a class="brand-logo" href="index.html">CODE<span class="logo-dot">.</span></a>
+      <span class="platform-badge" aria-label="Estado del sistema"><span class="status-indicator"></span> Prototipo Activo</span>
+      <button class="btn-menu-toggle" id="btn-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <nav class="nav-links" id="primary-nav">
+        <ul>
+          <li><a href="#manifiesto" class="nav-item">Manifiesto</a></li>
+          <li><a href="#pilares" class="nav-item">Cómo Funciona</a></li>
+          <li><a href="#simulador" class="nav-item">Simulador</a></li>
+          <li><a href="#equipo" class="nav-item">Equipo</a></li>
+          <li><a href="pages/oportunidades.html" class="nav-item">Oportunidades</a></li>
+          <li><a href="pages/diagnostico.html" class="nav-item nav-highlight">Diagnóstico Digital</a></li>
+          <li><a href="pages/login.html" class="btn btn-outline-nav">Ingresar / Demo</a></li>
+          <li><a href="pages/registro.html" class="btn btn-primary-nav">Registrarse</a></li>
+        </ul>
+      </nav>
+      <div class="user-session-bar" id="user-session-bar" hidden>
+        <span class="user-session-name" id="session-user-name"></span>
+        <a href="pages/login.html" class="btn btn-sm btn-outline-danger" id="nav-btn-logout">Cerrar Sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Editorial -->
+    <section class="hero-editorial" id="hero">
+      <div class="hero-content">
+        <div class="hero-tags">
+          <span class="hero-badge">Iniciativa Colombiana 2026</span>
+          <span class="hero-subbadge">MiPyMes + Estudiantes de Software</span>
+        </div>
+        <h1>Cierra la brecha digital de tu empresa con el talento joven que impulsa a Colombia</h1>
+        <p class="hero-lead">
+          CODE evalúa las necesidades técnicas de micro y pequeñas empresas en sectores como gastronomía, comercio y manufactura, estructurando soluciones realistas con presupuestos en pesos colombianos (COP) y conectándolas con estudiantes avanzados de tecnología.
+        </p>
+        <div class="hero-actions">
+          <a href="pages/diagnostico.html" class="btn btn-primary btn-lg">Iniciar Diagnóstico Gratuito</a>
+          <a href="pages/oportunidades.html" class="btn btn-secondary btn-lg">Explorar Necesidades</a>
+          <a href="pages/login.html" class="btn btn-ghost btn-lg">Acceso Rápido Demo (1 Clic)</a>
+        </div>
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <span class="metric-number">+90%</span>
+            <span class="metric-desc">Tejido empresarial en Colombia conformado por MiPyMes con barreras de digitalización</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number">2 - 4 sem</span>
+            <span class="metric-desc">Tiempo estimado para desplegar las primeras soluciones web y de catálogo</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number">100% COP</span>
+            <span class="metric-desc">Presupuestos accesibles calculados sin tarifas infladas ni intermediarios</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-number">0 Costo</span>
+            <span class="metric-desc">Diagnóstico y recomendaciones técnicas iniciales sin costo ni compromiso</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manifiesto y Problemática -->
+    <section class="section-editorial" id="manifiesto">
+      <div class="section-header">
+        <span class="section-kicker">Problemática Real</span>
+        <h2>Dos realidades desconectadas que se necesitan mutuamente</h2>
+        <p class="section-intro">
+          En Colombia existe una contradicción evidente: miles de negocios locales necesitan modernizarse pero no pueden pagar tarifas de agencias corporativas, mientras miles de estudiantes de software necesitan experiencia práctica pero nadie les abre las puertas.
+        </p>
+      </div>
+      <div class="manifesto-grid">
+        <article class="manifesto-card manifesto-pyme">
+          <div class="manifesto-badge">La Pequeña Empresa</div>
+          <h3>Costos prohibitivos y soluciones sobredimensionadas</h3>
+          <p>
+            Cafeterías, panaderías, ferreterías y talleres de confección gestionan sus ventas por libretas en papel o chats de WhatsApp desordenados. Las agencias tradicionales cobran $5.000.000 COP o más por software complejo que la pequeña empresa no necesita ni puede mantener.
+          </p>
+          <ul class="manifesto-points">
+            <li>Pérdida de pedidos por falta de catálogo ordenado.</li>
+            <li>Horas diarias invertidas en contestar precios manualmente.</li>
+            <li>Incertidumbre en inventario y flujo de caja semanal.</li>
+          </ul>
+        </article>
+
+        <article class="manifesto-card manifesto-student">
+          <div class="manifesto-badge">El Estudiante de Software</div>
+          <h3>Conocimiento fresco sin oportunidad de demostración</h3>
+          <p>
+            Estudiantes de instituciones técnicas, tecnológicas y universidades en Bogotá, Medellín, Cali y Barranquilla dominan HTML5, CSS3, JavaScript y bases de datos, pero se enfrentan a la barrera del mercado que exige años de experiencia para un primer empleo.
+          </p>
+          <ul class="manifesto-points">
+            <li>Portafolios con proyectos ficticios poco valorados.</li>
+            <li>Falta de trato con clientes reales y requerimientos vivos.</li>
+            <li>Necesidad de generar ingresos flexibles mientras terminan sus estudios.</li>
+          </ul>
+        </article>
+      </div>
+
+      <article class="manifesto-bridge">
+        <div class="bridge-tag">La Conexión CODE</div>
+        <h3>Un puente simbiótico, transparente y accesible</h3>
+        <p>
+          CODE no es una agencia ni una bolsa de empleo genérica. Es un sistema inteligente que traduce problemas cotidianos del comerciante colombiano en especificaciones técnicas claras, recomendando proyectos de corta duración que los estudiantes ejecutan con acompañamiento y alcance acotado.
+        </p>
+      </article>
+    </section>
+
+    <!-- Tres Pilares Operativos -->
+    <section class="section-pillars" id="pilares">
+      <div class="section-header">
+        <span class="section-kicker">Metodología de Trabajo</span>
+        <h2>Cómo Funciona la Plataforma CODE</h2>
+        <p class="section-intro">
+          Transformamos la incertidumbre tecnológica en un proceso claro estructurado en tres pilares operativos.
+        </p>
+      </div>
+      <div class="pillars-grid">
+        <article class="pillar-card">
+          <div class="pillar-number">01</div>
+          <div class="pillar-content">
+            <h3>Diagnóstico Digital Ágil</h3>
+            <p>
+              La empresa responde un asistente interactivo de 4 pasos sin tecnicismos complejos. Evaluamos presencia web, canales de atención, control de inventario y método de registro de clientes para calcular el índice de madurez digital.
+            </p>
+            <ul class="pillar-features">
+              <li>Cuestionario guiado en lenguaje claro.</li>
+              <li>Procesamiento determinista en menos de 3 segundos.</li>
+              <li>Puntuación objetiva sobre 100 puntos.</li>
+            </ul>
+            <a href="pages/diagnostico.html" class="pillar-link">Probar Diagnóstico →</a>
+          </div>
+        </article>
+
+        <article class="pillar-card">
+          <div class="pillar-number">02</div>
+          <div class="pillar-content">
+            <h3>Recomendación Inteligente</h3>
+            <p>
+              El sistema formula un plan de solución a la medida con alcance delimitado: catálogos digitales interactivos, automatización de pedidos hacia WhatsApp o control de stock local. Cada opción incluye tiempos y presupuestos transparentes en pesos colombianos (COP).
+            </p>
+            <ul class="pillar-features">
+              <li>Cronogramas realistas de 2 a 6 semanas.</li>
+              <li>Presupuestos sugeridos entre $400.000 y $1.800.000 COP.</li>
+              <li>Especificación clara de habilidades requeridas.</li>
+            </ul>
+            <a href="pages/oportunidades.html" class="pillar-link">Ver Ejemplos de Solución →</a>
+          </div>
+        </article>
+
+        <article class="pillar-card">
+          <div class="pillar-number">03</div>
+          <div class="pillar-content">
+            <h3>Matching de Talento</h3>
+            <p>
+              Emparejamos la necesidad de la empresa con perfiles de estudiantes según compatibilidad de tecnologías (HTML5, CSS3, JS, UI/UX), ubicación y disponibilidad horaria, facilitando un acuerdo directo y constructivo.
+            </p>
+            <ul class="pillar-features">
+              <li>Cálculo porcentual (%) de afinidad técnica.</li>
+              <li>Verificación de horas disponibles semanales.</li>
+              <li>Acompañamiento por fases para entrega exitosa.</li>
+            </ul>
+            <a href="pages/login.html" class="pillar-link">Ver Panel de Conexiones →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Simulador Rápido Interactivo -->
+    <section class="section-simulator" id="simulador">
+      <div class="simulator-container">
+        <div class="simulator-header">
+          <span class="section-kicker">Herramienta Interactiva</span>
+          <h2>Simulador Rápido de Solución Digital</h2>
+          <p>
+            Selecciona el sector de tu negocio y el obstáculo que más tiempo te quita para conocer al instante la solución sugerida y el rango referencial de tiempo e inversión.
+          </p>
+        </div>
+        <form class="simulator-form" id="form-simulator">
+          <div class="simulator-selectors">
+            <div class="form-group">
+              <label for="sim-sector">Sector de tu Empresa:</label>
+              <select id="sim-sector" name="sector" class="form-control">
+                <option value="gastronomia">Gastronomía y Cafés (Restaurantes, Panaderías, Bares)</option>
+                <option value="comercio">Comercio Minorista (Moda, Calzado, Ferreterías, Variedades)</option>
+                <option value="servicios">Servicios Locales (Belleza, Consultorías, Reparaciones)</option>
+                <option value="manufactura">Manufactura Local (Artesanías, Muebles, Alimentos empacados)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sim-problem">Principal Cuello de Botella:</label>
+              <select id="sim-problem" name="problem" class="form-control">
+                <option value="pedidos">Desorden respondiendo pedidos y precios por chat de WhatsApp</option>
+                <option value="visibilidad">No tenemos presencia en internet ni aparecemos en Google Maps</option>
+                <option value="inventario">Llevamos el inventario en papel o Excel y se descontrola el stock</option>
+                <option value="cotizaciones">Demasiado tiempo preparando cotizaciones manuales a clientes</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="btn-run-simulation">Calcular Solución Sugerida</button>
+        </form>
+
+        <div class="simulation-result" id="sim-result" aria-live="polite">
+          <div class="sim-placeholder">
+            <p>Selecciona tus opciones arriba y pulsa "Calcular Solución Sugerida" para ver la estimación preliminar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo Fundador -->
+    <section class="section-team" id="equipo">
+      <div class="section-header">
+        <span class="section-kicker">Liderazgo del Proyecto</span>
+        <h2>Equipo Fundador de CODE</h2>
+        <p class="section-intro">
+          Estudiantes de desarrollo de software comprometidos con el fortalecimiento del ecosistema empresarial y educativo colombiano.
+        </p>
+      </div>
+      <div class="team-grid">
+        <article class="team-card">
+          <div class="team-avatar-placeholder">JA</div>
+          <h3>Jared Arenas</h3>
+          <span class="team-role">Co-Fundador & Arquitectura de Software</span>
+          <p>
+            Enfocado en la estructuración de flujos deterministas, optimización de algoritmos de diagnóstico y modelado de datos para MiPyMes.
+          </p>
+        </article>
+
+        <article class="team-card">
+          <div class="team-avatar-placeholder">FV</div>
+          <h3>Frederick Vargas</h3>
+          <span class="team-role">Co-Fundador & Estrategia de Producto</span>
+          <p>
+            Orientado a la investigación de necesidades comerciales en microempresas colombianas y viabilidad operativa de las conexiones técnicas.
+          </p>
+        </article>
+
+        <article class="team-card">
+          <div class="team-avatar-placeholder">JV</div>
+          <h3>Jair Viloria</h3>
+          <span class="team-role">Co-Fundador & Experiencia de Usuario</span>
+          <p>
+            Especialista en interfaces accesibles, semántica web y diseño centrado en la usabilidad de pequeños comerciantes y talento emergente.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a class="brand-logo" href="index.html">CODE<span class="logo-dot">.</span></a>
+        <p>Plataforma para la conexión entre MiPyMes colombianas y talento estudiantil de tecnología.</p>
+        <span class="footer-academic-badge">Proyecto de Feria Tecnológica — Noviembre 2026</span>
+      </div>
+      <div class="footer-nav">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="pages/diagnostico.html">Diagnóstico Digital</a></li>
+          <li><a href="pages/oportunidades.html">Oportunidades</a></li>
+          <li><a href="pages/login.html">Ingreso / Demo</a></li>
+          <li><a href="pages/registro.html">Registro</a></li>
+        </ul>
+      </div>
+      <div class="footer-roles">
+        <h4>Paneles de Usuario</h4>
+        <ul>
+          <li><a href="pages/empresa.html">Panel de Empresa</a></li>
+          <li><a href="pages/estudiante.html">Panel de Estudiante</a></li>
+          <li><a href="pages/administrador.html">Panel de Administración</a></li>
+        </ul>
+      </div>
+      <div class="footer-legal">
+        <h4>Aviso de Transparencia</h4>
+        <p>
+          Este sitio es un prototipo interactivo para demostración académica. No almacena información financiera sensible ni realiza cobros reales.
+        </p>
+        <p class="copyright">© 2026 CODE. Jared Arenas, Frederick Vargas, Jair Viloria. Bogotá, Colombia.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

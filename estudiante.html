@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel del estudiante de tecnología en CODE. Administra tu perfil, revisa proyectos afines y gestiona tus postulaciones.">
+  <title>Panel de Estudiante de Tecnología — CODE</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/matching.js" defer></script>
+  <script src="../js/dashboard.js" defer></script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Barra Lateral del Estudiante -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-brand">
+        <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+        <div class="sidebar-user-preview">
+          <span class="user-role-badge">Estudiante</span>
+          <strong id="sidebar-student-name">Valentina Gómez</strong>
+          <small id="sidebar-student-institution">SENA / Distrital • 6to Sem</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Navegación del panel estudiantil">
+        <ul>
+          <li><a href="#section-metrics" class="sidebar-nav-item is-active"><span class="nav-icon">📊</span> Resumen General</a></li>
+          <li><a href="#section-profile" class="sidebar-nav-item"><span class="nav-icon">👤</span> Ficha & Habilidades</a></li>
+          <li><a href="#section-matched" class="sidebar-nav-item"><span class="nav-icon">🎯</span> Proyectos Recomendados</a></li>
+          <li><a href="#section-applications" class="sidebar-nav-item"><span class="nav-icon">📨</span> Mis Postulaciones</a></li>
+          <li class="nav-divider"></li>
+          <li><a href="oportunidades.html" class="sidebar-nav-item"><span class="nav-icon">🌐</span> Catálogo Completo</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="sidebar-nav-item"><span class="nav-icon">🏠</span> Volver a Inicio</a>
+      </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <div class="dashboard-content-area">
+      <!-- Barra Superior -->
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button class="btn-menu-toggle sidebar-toggle" id="btn-menu-toggle" aria-label="Alternar menú lateral" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+          <div class="user-greeting" id="user-greeting">
+            <h1>Hola, Valentina Gómez</h1>
+            <p>Tienes proyectos compatibles con tu perfil listos para postularte.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a href="oportunidades.html" class="btn btn-sm btn-primary">Explorar Retos</a>
+          <button type="button" id="btn-logout" class="btn btn-sm btn-outline-danger">Cerrar Sesión</button>
+        </div>
+      </header>
+
+      <!-- Contenido Principal -->
+      <main class="dashboard-main">
+        <!-- Métricas Rápidas -->
+        <section class="metrics-grid" id="section-metrics" aria-label="Métricas del estudiante">
+          <div class="metric-card">
+            <span class="metric-label">Proyectos Compatibles</span>
+            <strong class="metric-value" id="student-stat-matches">3</strong>
+            <span class="metric-trend">+80% afinidad técnica</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Postulaciones Activas</span>
+            <strong class="metric-value" id="student-stat-applications">1</strong>
+            <span class="metric-trend">Café Origen Andino</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Disponibilidad Semanal</span>
+            <strong class="metric-value" id="student-stat-hours">15 h/sem</strong>
+            <span class="metric-trend">Modalidad Remota</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Proyectos Completados</span>
+            <strong class="metric-value" id="student-stat-completed">2</strong>
+            <span class="metric-trend">Experiencia comprobable</span>
+          </div>
+        </section>
+
+        <!-- Ficha de Perfil y Habilidades Editables -->
+        <section class="section-card profile-card" id="section-profile">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Mi Ficha Profesional y Habilidades Técnicas</h2>
+              <p>Mantén actualizado tu stack técnico para que el algoritmo de matching te recomiende proyectos adecuados.</p>
+            </div>
+          </div>
+
+          <form id="form-student-profile" class="profile-form" novalidate>
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="student-profile-name">Nombre Completo: *</label>
+                <input type="text" id="student-profile-name" name="name" class="form-control" value="Valentina Gómez" required>
+              </div>
+              <div class="form-group col-half">
+                <label for="student-profile-institution">Institución Educativa: *</label>
+                <input type="text" id="student-profile-institution" name="institution" class="form-control" value="SENA / Universidad Distrital" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="student-profile-semester">Semestre o Nivel Académico: *</label>
+                <select id="student-profile-semester" name="semester" class="form-control" required>
+                  <option value="4to Semestre">4to Semestre</option>
+                  <option value="5to Semestre">5to Semestre</option>
+                  <option value="6to Semestre" selected>6to Semestre</option>
+                  <option value="7mo Semestre o Superior">7mo Semestre o Superior</option>
+                  <option value="Graduando">Graduando</option>
+                </select>
+              </div>
+              <div class="form-group col-half">
+                <label for="student-profile-hours">Horas Disponibles por Semana: *</label>
+                <select id="student-profile-hours" name="hours" class="form-control" required>
+                  <option value="10">10 horas / semana</option>
+                  <option value="15" selected>15 horas / semana</option>
+                  <option value="20">20 horas / semana</option>
+                  <option value="25">25 horas o más</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="group-label">Habilidades y Tecnologías de tu Portafolio:</label>
+              <div class="skills-selector-group" id="student-skills-selector">
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="studentSkill" value="HTML5" checked>
+                  <span>HTML5 Semántico</span>
+                </label>
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="studentSkill" value="CSS3" checked>
+                  <span>CSS3 & Flexbox/Grid</span>
+                </label>
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="studentSkill" value="JavaScript" checked>
+                  <span>JavaScript DOM</span>
+                </label>
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="studentSkill" value="Diseño UI/UX" checked>
+                  <span>Diseño UI/UX Accesible</span>
+                </label>
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="studentSkill" value="Catálogos Web">
+                  <span>Catálogos Web</span>
+                </label>
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="studentSkill" value="Automatización">
+                  <span>Automatización WhatsApp</span>
+                </label>
+                <label class="tag-checkbox">
+                  <input type="checkbox" name="studentSkill" value="Bases de Datos">
+                  <span>Control Local / BD</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="student-profile-modality">Modalidad de Trabajo:</label>
+                <select id="student-profile-modality" name="modality" class="form-control">
+                  <option value="Remoto" selected>Remoto</option>
+                  <option value="Semipresencial">Semipresencial</option>
+                </select>
+              </div>
+              <div class="form-group col-half">
+                <label for="student-profile-bio">Biografía y Enfoque Profesional:</label>
+                <input type="text" id="student-profile-bio" name="bio" class="form-control" value="Estudiante apasionada por la accesibilidad web y el desarrollo frontend limpio.">
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-secondary" id="btn-update-profile">Guardar Cambios en Ficha</button>
+              <span class="form-feedback" id="profile-feedback" role="alert" aria-live="polite"></span>
+            </div>
+          </form>
+        </section>
+
+        <!-- Proyectos Recomendados con Porcentaje de Compatibilidad -->
+        <section class="section-card" id="section-matched">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Proyectos Recomendados según tus Habilidades (Matching %)</h2>
+              <p>Calculado determinísticamente a partir del cruce entre tus tecnologías y las necesidades de las MiPyMes registradas.</p>
+            </div>
+          </div>
+          <div class="opportunities-list" id="student-opportunities-container">
+            <!-- Renderizado dinámico vía js/matching.js & js/dashboard.js -->
+          </div>
+        </section>
+
+        <!-- Postulaciones y Proyectos Conectados -->
+        <section class="section-card" id="section-applications">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Mis Postulaciones y Conexiones Activas</h2>
+              <p>Seguimiento al estado de tus postulaciones con pequeñas empresas.</p>
+            </div>
+          </div>
+          <div class="applications-list" id="student-applications-container">
+            <!-- Renderizado dinámico vía js/dashboard.js -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

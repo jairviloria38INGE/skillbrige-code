@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo público de retos y necesidades digitales de pequeñas empresas colombianas en CODE. Filtra por sector y tecnologías requeridas.">
+  <title>Catálogo de Oportunidades y Proyectos — CODE</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/matching.js" defer></script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+      <span class="platform-badge" aria-label="Estado del sistema"><span class="status-indicator"></span> Prototipo Activo</span>
+      <button class="btn-menu-toggle" id="btn-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <nav class="nav-links" id="primary-nav">
+        <ul>
+          <li><a href="../index.html" class="nav-item">Inicio</a></li>
+          <li><a href="diagnostico.html" class="nav-item">Diagnóstico Digital</a></li>
+          <li><a href="oportunidades.html" class="nav-item is-active">Oportunidades</a></li>
+          <li><a href="login.html" class="btn btn-outline-nav">Ingresar / Demo</a></li>
+          <li><a href="registro.html" class="btn btn-primary-nav">Registrarse</a></li>
+        </ul>
+      </nav>
+      <div class="user-session-bar" id="user-session-bar" hidden>
+        <span class="user-session-name" id="session-user-name"></span>
+        <a href="login.html" class="btn btn-sm btn-outline-danger" id="nav-btn-logout">Cerrar Sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="catalog-main">
+    <!-- Encabezado del Catálogo -->
+    <section class="catalog-hero">
+      <div class="catalog-hero-content">
+        <span class="catalog-badge">Banco de Necesidades Reales</span>
+        <h1>Catálogo de Retos Tecnológicos de MiPyMes</h1>
+        <p>
+          Explora proyectos concretos planteados por pequeñas empresas en Colombia. Proyectos de corta duración, con presupuestos en COP y requerimientos técnicos específicos para poner en práctica tus conocimientos de software.
+        </p>
+      </div>
+    </section>
+
+    <!-- Barra de Filtros y Búsqueda Interactiva -->
+    <section class="catalog-filters-section" aria-label="Filtros de búsqueda de proyectos">
+      <div class="filters-container">
+        <div class="filter-group filter-search">
+          <label for="input-search-opportunities">Buscar por palabra clave:</label>
+          <input type="search" id="input-search-opportunities" class="form-control" placeholder="Buscar por negocio, ciudad, dolor o tecnología (ej. WhatsApp, Bogotá, Menú)...">
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-sector">Sector Económico:</label>
+          <select id="filter-sector" class="form-control">
+            <option value="all">Todos los sectores</option>
+            <option value="Gastronomía">Gastronomía y Alimentos</option>
+            <option value="Comercio Minorista">Comercio Minorista</option>
+            <option value="Manufactura">Manufactura Local</option>
+            <option value="Servicios">Servicios Locales</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-tech">Tecnología Requerida:</label>
+          <select id="filter-tech" class="form-control">
+            <option value="all">Todas las tecnologías</option>
+            <option value="HTML5">HTML5 Semántico</option>
+            <option value="CSS3">CSS3 / Diseño UI</option>
+            <option value="JavaScript">JavaScript DOM</option>
+            <option value="Bases de Datos">Control Local / BD</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-sort">Ordenar por:</label>
+          <select id="filter-sort" class="form-control">
+            <option value="recent">Más recientes</option>
+            <option value="budget-desc">Mayor presupuesto (COP)</option>
+            <option value="budget-asc">Menor presupuesto (COP)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Indicador de Resultados -->
+    <div class="catalog-results-bar">
+      <div class="catalog-results-count" id="catalog-results-count" aria-live="polite">
+        Mostrando oportunidades disponibles
+      </div>
+    </div>
+
+    <!-- Rejilla de Tarjetas de Oportunidades -->
+    <section class="catalog-grid-section" aria-label="Listado de proyectos disponibles">
+      <div class="opportunities-catalog-grid" id="opportunities-catalog-container">
+        <!-- Renderizado dinámico vía js/script.js o js/matching.js -->
+        <!-- Estructura estática semántica de respaldo inicial -->
+        <article class="opportunity-card">
+          <div class="opp-card-header">
+            <span class="opp-sector-badge">Gastronomía</span>
+            <span class="opp-budget">$900.000 COP</span>
+          </div>
+          <h3>Catálogo web interactivo con pedidos directos a WhatsApp</h3>
+          <p class="opp-company">Café Origen Andino • Bogotá, Colombia</p>
+          <p class="opp-problem">
+            Atención manual por WhatsApp y pedidos desordenados en horas pico con pérdida de clientes recurrentes.
+          </p>
+          <div class="opp-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <div class="opp-card-footer">
+            <span class="opp-time">Duración: 3 - 4 semanas</span>
+            <a href="login.html" class="btn btn-sm btn-primary">Ver Detalle / Postularse</a>
+          </div>
+        </article>
+
+        <article class="opportunity-card">
+          <div class="opp-card-header">
+            <span class="opp-sector-badge">Comercio Minorista</span>
+            <span class="opp-budget">$1.200.000 COP</span>
+          </div>
+          <h3>Sistema local de control de inventario y caja para zapatería</h3>
+          <p class="opp-company">Calzados Bucaramanga Real • Bucaramanga, Colombia</p>
+          <p class="opp-problem">
+            Registro en libretas con desajustes constantes en tallas y pérdida de control sobre existencias en bodega.
+          </p>
+          <div class="opp-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">LocalStorage</span>
+            <span class="tag">CSS3</span>
+          </div>
+          <div class="opp-card-footer">
+            <span class="opp-time">Duración: 4 - 5 semanas</span>
+            <a href="login.html" class="btn btn-sm btn-primary">Ver Detalle / Postularse</a>
+          </div>
+        </article>
+
+        <article class="opportunity-card">
+          <div class="opp-card-header">
+            <span class="opp-sector-badge">Manufactura</span>
+            <span class="opp-budget">$800.000 COP</span>
+          </div>
+          <h3>Vitrina web para taller de confección y cotizador de uniformes</h3>
+          <p class="opp-company">Confecciones del Valle • Cali, Colombia</p>
+          <p class="opp-problem">
+            Clientes corporativos solicitan cotizaciones rápidas y actualmente se tardan hasta 48 horas en responder.
+          </p>
+          <div class="opp-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Diseño UI/UX</span>
+          </div>
+          <div class="opp-card-footer">
+            <span class="opp-time">Duración: 3 semanas</span>
+            <a href="login.html" class="btn btn-sm btn-primary">Ver Detalle / Postularse</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Modal para Detalle de Proyecto / Postulación -->
+    <div class="modal-dialog-backdrop" id="modal-opportunity-backdrop" hidden>
+      <div class="modal-dialog" id="modal-opportunity-detail" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
+        <button type="button" class="btn-close-modal" id="btn-close-opp-modal" aria-label="Cerrar ventana">×</button>
+        <div class="modal-body" id="modal-opp-body">
+          <!-- Inyectado dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+        <p>Iniciativa de conexión técnica para el desarrollo productivo colombiano.</p>
+      </div>
+      <div class="footer-legal">
+        <p class="copyright">© 2026 CODE. Jared Arenas, Frederick Vargas, Jair Viloria. Demostración Académica.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

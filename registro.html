@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registro en CODE para pequeñas empresas colombianas y estudiantes de tecnología.">
+  <title>Registro de Cuenta — CODE</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+      <span class="platform-badge" aria-label="Estado del sistema"><span class="status-indicator"></span> Prototipo Activo</span>
+      <button class="btn-menu-toggle" id="btn-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <nav class="nav-links" id="primary-nav">
+        <ul>
+          <li><a href="../index.html" class="nav-item">Inicio</a></li>
+          <li><a href="diagnostico.html" class="nav-item">Diagnóstico Digital</a></li>
+          <li><a href="oportunidades.html" class="nav-item">Oportunidades</a></li>
+          <li><a href="login.html" class="btn btn-outline-nav">Ingresar</a></li>
+        </ul>
+      </nav>
+      <div class="user-session-bar" id="user-session-bar" hidden>
+        <span class="user-session-name" id="session-user-name"></span>
+        <a href="login.html" class="btn btn-sm btn-outline-danger" id="nav-btn-logout">Cerrar Sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-container auth-container-wide">
+      <div class="auth-header">
+        <span class="auth-badge">Nueva Cuenta</span>
+        <h1>Registro en CODE</h1>
+        <p>Únete a la red que transforma MiPyMes mediante soluciones tecnológicas viables construidas por talento emergente colombiano.</p>
+      </div>
+
+      <!-- Pestañas de Selección de Rol -->
+      <div class="role-selector" id="role-selector" role="tablist" aria-label="Tipo de registro">
+        <button type="button" class="role-card is-active" data-role="empresa" id="tab-empresa" role="tab" aria-selected="true" aria-controls="empresa-fields">
+          <span class="role-icon">🏢</span>
+          <span class="role-name">Soy Pequeña Empresa</span>
+          <small>Necesito diagnosticar y digitalizar mi negocio</small>
+        </button>
+        <button type="button" class="role-card" data-role="estudiante" id="tab-estudiante" role="tab" aria-selected="false" aria-controls="estudiante-fields">
+          <span class="role-icon">🎓</span>
+          <span class="role-name">Soy Estudiante de Software</span>
+          <small>Quiero aplicar mis habilidades en proyectos reales</small>
+        </button>
+      </div>
+
+      <!-- Formulario de Registro Dinámico -->
+      <form id="form-register" class="auth-form" novalidate>
+        <input type="hidden" id="register-role" name="role" value="empresa">
+
+        <!-- Campos para Empresa -->
+        <fieldset class="role-fields" id="empresa-fields" aria-labelledby="tab-empresa">
+          <legend class="sr-only">Información de la Pequeña Empresa</legend>
+          
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-company-name">Razón Social o Nombre Comercial: *</label>
+              <input type="text" id="reg-company-name" name="companyName" class="form-control" placeholder="Ej. Café Origen Andino" required>
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-company-nit">NIT o RUT (Referencial): *</label>
+              <input type="text" id="reg-company-nit" name="companyNit" class="form-control" placeholder="Ej. 901.452.880-3" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-company-sector">Sector Económico: *</label>
+              <select id="reg-company-sector" name="companySector" class="form-control" required>
+                <option value="">Selecciona un sector</option>
+                <option value="Gastronomía">Gastronomía y Alimentos</option>
+                <option value="Comercio Minorista">Comercio Minorista y Tiendas</option>
+                <option value="Manufactura">Manufactura Local y Artesanías</option>
+                <option value="Servicios">Servicios Locales y Reparaciones</option>
+                <option value="Salud/Bienestar">Salud, Estética y Bienestar</option>
+              </select>
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-company-city">Ciudad en Colombia: *</label>
+              <select id="reg-company-city" name="companyCity" class="form-control" required>
+                <option value="">Selecciona una ciudad</option>
+                <option value="Bogotá">Bogotá D.C.</option>
+                <option value="Medellín">Medellín</option>
+                <option value="Cali">Cali</option>
+                <option value="Barranquilla">Barranquilla</option>
+                <option value="Bucaramanga">Bucaramanga</option>
+                <option value="Pereira">Pereira</option>
+                <option value="Cartagena">Cartagena</option>
+                <option value="Manizales">Manizales</option>
+                <option value="Otra">Otra ciudad / municipio</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-company-contact">Nombre de Contacto / Dueño: *</label>
+              <input type="text" id="reg-company-contact" name="companyContact" class="form-control" placeholder="Ej. Carlos Mendoza" required>
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-company-phone">Teléfono / WhatsApp de Contacto: *</label>
+              <input type="tel" id="reg-company-phone" name="companyPhone" class="form-control" placeholder="Ej. 310 456 7890" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-company-email">Correo Electrónico Empresarial: *</label>
+              <input type="email" id="reg-company-email" name="companyEmail" class="form-control" placeholder="contacto@cafeorigen.com" required autocomplete="email">
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-company-password">Contraseña (mínimo 6 caracteres): *</label>
+              <input type="password" id="reg-company-password" name="companyPassword" class="form-control" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Campos para Estudiante -->
+        <fieldset class="role-fields" id="estudiante-fields" aria-labelledby="tab-estudiante" hidden>
+          <legend class="sr-only">Información del Estudiante de Tecnología</legend>
+          
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-student-name">Nombre Completo: *</label>
+              <input type="text" id="reg-student-name" name="studentName" class="form-control" placeholder="Ej. Valentina Gómez">
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-student-institution">Institución Educativa: *</label>
+              <input type="text" id="reg-student-institution" name="studentInstitution" class="form-control" placeholder="Ej. SENA / Universidad Distrital">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-student-semester">Semestre o Nivel de Formación: *</label>
+              <select id="reg-student-semester" name="studentSemester" class="form-control">
+                <option value="">Selecciona nivel</option>
+                <option value="4to Semestre">4to Semestre (Técnico / Tecnólogo)</option>
+                <option value="5to Semestre">5to Semestre</option>
+                <option value="6to Semestre">6to Semestre</option>
+                <option value="7mo Semestre o Superior">7mo Semestre o Superior</option>
+                <option value="Graduando">Graduando / Recién Egresado</option>
+              </select>
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-student-hours">Disponibilidad Semanal (Horas): *</label>
+              <select id="reg-student-hours" name="studentHours" class="form-control">
+                <option value="10">10 horas semanales</option>
+                <option value="15" selected>15 horas semanales</option>
+                <option value="20">20 horas semanales</option>
+                <option value="25">25 horas o más</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="group-label">Habilidades Técnicas Principales (Selecciona las que dominas):</label>
+            <div class="checkbox-tags-grid" id="reg-student-skills-grid">
+              <label class="tag-checkbox">
+                <input type="checkbox" name="skills" value="HTML5" checked>
+                <span>HTML5 Semántico</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="skills" value="CSS3" checked>
+                <span>CSS3 & Responsive</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="skills" value="JavaScript" checked>
+                <span>JavaScript DOM</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="skills" value="Diseño UI/UX">
+                <span>Diseño UI/UX Accesible</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="skills" value="Catálogos Web">
+                <span>Catálogos Web & Menús</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="skills" value="Automatización">
+                <span>Automatización WhatsApp</span>
+              </label>
+              <label class="tag-checkbox">
+                <input type="checkbox" name="skills" value="Bases de Datos">
+                <span>Control Local & BD Básica</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-student-modality">Modalidad de Trabajo Preferida: *</label>
+              <select id="reg-student-modality" name="studentModality" class="form-control">
+                <option value="Remoto" selected>Remoto</option>
+                <option value="Semipresencial">Semipresencial (Híbrido)</option>
+              </select>
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-student-email">Correo Electrónico: *</label>
+              <input type="email" id="reg-student-email" name="studentEmail" class="form-control" placeholder="valentina@correo.edu.co" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-half">
+              <label for="reg-student-password">Contraseña (mínimo 6 caracteres): *</label>
+              <input type="password" id="reg-student-password" name="studentPassword" class="form-control" placeholder="••••••••" autocomplete="new-password">
+            </div>
+            <div class="form-group col-half">
+              <label for="reg-student-bio">Biografía Breve o Intereses: *</label>
+              <input type="text" id="reg-student-bio" name="studentBio" class="form-control" placeholder="Ej. Apasionada por accesibilidad y desarrollo frontend.">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Aceptación y Validación -->
+        <div class="form-group form-terms">
+          <label class="checkbox-label" for="reg-terms">
+            <input type="checkbox" id="reg-terms" name="terms" required>
+            <span>Acepto participar en el proyecto académico CODE y autorizo el tratamiento referencial de mis datos con fines de demostración.</span>
+          </label>
+        </div>
+
+        <div class="form-feedback" id="register-feedback" role="alert" aria-live="polite"></div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="btn-register-submit">Completar Registro</button>
+      </form>
+
+      <div class="auth-footer">
+        <p class="auth-footer-text">¿Ya tienes una cuenta registrada? <a href="login.html">Inicia Sesión aquí</a></p>
+        <p class="auth-back-link"><a href="../index.html">← Regresar a la página de inicio</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+        <p>Iniciativa de conexión técnica para el desarrollo productivo colombiano.</p>
+      </div>
+      <div class="footer-legal">
+        <p class="copyright">© 2026 CODE. Jared Arenas, Frederick Vargas, Jair Viloria. Demostración Académica.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

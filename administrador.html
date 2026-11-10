@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel de supervisión general del sistema CODE. Métricas de MiPyMes, talento estudiantil y reinicio de datos demo.">
+  <title>Panel de Supervisión Administrativa — CODE</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/dashboard.js" defer></script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Barra Lateral de Administración -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-brand">
+        <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+        <div class="sidebar-user-preview">
+          <span class="user-role-badge badge-admin">Supervisión</span>
+          <strong>Equipo CODE</strong>
+          <small>Jared • Frederick • Jair</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Navegación del panel de administración">
+        <ul>
+          <li><a href="#admin-overview" class="sidebar-nav-item is-active"><span class="nav-icon">📈</span> Métricas Globales</a></li>
+          <li><a href="#admin-requests-section" class="sidebar-nav-item"><span class="nav-icon">📋</span> Solicitudes Centrales</a></li>
+          <li><a href="#admin-companies-section" class="sidebar-nav-item"><span class="nav-icon">🏢</span> Directorio Empresas</a></li>
+          <li><a href="#admin-students-section" class="sidebar-nav-item"><span class="nav-icon">🎓</span> Directorio Estudiantes</a></li>
+          <li class="nav-divider"></li>
+          <li><a href="oportunidades.html" class="sidebar-nav-item"><span class="nav-icon">🌐</span> Catálogo Público</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="../index.html" class="sidebar-nav-item"><span class="nav-icon">🏠</span> Volver a Inicio</a>
+      </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <div class="dashboard-content-area">
+      <!-- Barra Superior -->
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button class="btn-menu-toggle sidebar-toggle" id="btn-menu-toggle" aria-label="Alternar menú lateral" aria-expanded="false">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </button>
+          <div class="user-greeting" id="user-greeting">
+            <h1>Panel de Control General CODE</h1>
+            <p>Supervisión del flujo de diagnósticos, registro de MiPyMes y conexiones de talento en feria.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" id="btn-reset-demo" class="btn btn-sm btn-warning" title="Restaura la información semilla original para una nueva demostración ante jurados">
+            🔄 Reiniciar Datos Demo
+          </button>
+          <button type="button" id="btn-logout" class="btn btn-sm btn-outline-danger">Cerrar Sesión</button>
+        </div>
+      </header>
+
+      <!-- Contenido Principal -->
+      <main class="dashboard-main">
+        <!-- Métricas Centrales del Ecosistema -->
+        <section class="metrics-grid" id="admin-overview" aria-label="Métricas del sistema">
+          <div class="metric-card">
+            <span class="metric-label">Empresas Registradas</span>
+            <strong class="metric-value" id="admin-stat-companies">3</strong>
+            <span class="metric-trend">MiPyMes colombianas</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Estudiantes Registrados</span>
+            <strong class="metric-value" id="admin-stat-students">4</strong>
+            <span class="metric-trend">Talento técnico y universitario</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Solicitudes Analizadas</span>
+            <strong class="metric-value" id="admin-stat-requests">4</strong>
+            <span class="metric-trend">Con diagnóstico emitido</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Matches / Conexiones</span>
+            <strong class="metric-value" id="admin-stat-matches">5</strong>
+            <span class="metric-trend">Afinidad técnica &gt; 75%</span>
+          </div>
+        </section>
+
+        <!-- Registro Central de Necesidades y Solicitudes -->
+        <section class="section-card" id="admin-requests-section">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Registro Central de Necesidades y Diagnósticos</h2>
+              <p>Monitoreo en vivo de todas las solicitudes emitidas por pequeñas empresas en la plataforma.</p>
+            </div>
+            <div class="header-filter-tools">
+              <label for="admin-filter-status" class="sr-only">Filtrar por estado</label>
+              <select id="admin-filter-status" class="form-control form-control-sm">
+                <option value="all">Todos los estados</option>
+                <option value="diagnosticado">Diagnosticados</option>
+                <option value="en_matching">En proceso de matching</option>
+                <option value="conectado">Conectados con estudiante</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table" id="admin-summary-table">
+              <thead>
+                <tr>
+                  <th scope="col">ID Solicitud</th>
+                  <th scope="col">Empresa</th>
+                  <th scope="col">Sector</th>
+                  <th scope="col">Ciudad</th>
+                  <th scope="col">Madurez Digital</th>
+                  <th scope="col">Presupuesto Sugerido</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="admin-summary-tbody">
+                <!-- Renderizado dinámico vía js/dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Directorio de MiPyMes Aliadas -->
+        <section class="section-card" id="admin-companies-section">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Directorio de MiPyMes Registradas</h2>
+              <p>Empresas que forman parte de la red de transformación digital.</p>
+            </div>
+          </div>
+          <div class="admin-list-container" id="admin-companies-list">
+            <!-- Renderizado dinámico vía js/dashboard.js -->
+          </div>
+        </section>
+
+        <!-- Directorio de Talento Estudiantil Registrado -->
+        <section class="section-card" id="admin-students-section">
+          <div class="section-card-header">
+            <div class="header-titles">
+              <h2>Directorio de Estudiantes de Tecnología</h2>
+              <p>Perfiles de estudiantes, instituciones aliadas y disponibilidad horaria.</p>
+            </div>
+          </div>
+          <div class="admin-list-container" id="admin-students-list">
+            <!-- Renderizado dinámico vía js/dashboard.js -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

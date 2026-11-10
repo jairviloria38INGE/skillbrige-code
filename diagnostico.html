@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Asistente interactivo de diagnóstico digital para micro y pequeñas empresas colombianas. Evalúa madurez, costos en COP y matching de estudiantes.">
+  <title>Diagnóstico Digital Empresarial — CODE</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <script src="../js/data.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/matching.js" defer></script>
+  <script src="../js/diagnostico.js" defer></script>
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+      <span class="platform-badge" aria-label="Estado del sistema"><span class="status-indicator"></span> Prototipo Activo</span>
+      <button class="btn-menu-toggle" id="btn-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <nav class="nav-links" id="primary-nav">
+        <ul>
+          <li><a href="../index.html" class="nav-item">Inicio</a></li>
+          <li><a href="oportunidades.html" class="nav-item">Oportunidades</a></li>
+          <li><a href="login.html" class="btn btn-outline-nav">Ingresar / Demo</a></li>
+          <li><a href="registro.html" class="btn btn-primary-nav">Registrarse</a></li>
+        </ul>
+      </nav>
+      <div class="user-session-bar" id="user-session-bar" hidden>
+        <span class="user-session-name" id="session-user-name"></span>
+        <a href="login.html" class="btn btn-sm btn-outline-danger" id="nav-btn-logout">Cerrar Sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="diagnostic-main">
+    <div class="diagnostic-wrapper">
+      <div class="diagnostic-intro">
+        <span class="intro-badge">Evaluación Gratuita</span>
+        <h1>Asistente de Diagnóstico Digital</h1>
+        <p>
+          Evalúa el estado tecnológico de tu empresa en 4 sencillos pasos. Al finalizar obtendrás una hoja de ruta técnica concreta, presupuesto estimado en pesos colombianos (COP) y talento estudiantil compatible listo para ayudarte.
+        </p>
+      </div>
+
+      <!-- Contenedor del Asistente -->
+      <div class="wizard-container" id="diagnostic-wizard">
+        <!-- Barra de Progreso de Pasos -->
+        <div class="wizard-stepper" id="wizard-stepper" role="tablist" aria-label="Pasos del diagnóstico">
+          <div class="step-item is-active" data-step="1" id="stepper-step-1">
+            <span class="step-circle">1</span>
+            <span class="step-label">Datos & Sector</span>
+          </div>
+          <div class="step-item" data-step="2" id="stepper-step-2">
+            <span class="step-circle">2</span>
+            <span class="step-label">Estado Digital</span>
+          </div>
+          <div class="step-item" data-step="3" id="stepper-step-3">
+            <span class="step-circle">3</span>
+            <span class="step-label">Dolor Operativo</span>
+          </div>
+          <div class="step-item" data-step="4" id="stepper-step-4">
+            <span class="step-circle">4</span>
+            <span class="step-label">Metas & Inversión</span>
+          </div>
+        </div>
+
+        <!-- Formulario del Asistente -->
+        <form id="form-diagnostic" class="wizard-form" novalidate>
+          <!-- Paso 1: Datos Básicos y Sector -->
+          <div class="wizard-step is-visible" id="step-1" role="tabpanel" aria-labelledby="stepper-step-1">
+            <div class="step-heading">
+              <h2>Paso 1: Identificación y Sector Comercial</h2>
+              <p>Cuéntanos sobre tu negocio para contextualizar la evaluación según tu industria.</p>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="diag-business-name">Nombre Comercial del Negocio: *</label>
+                <input type="text" id="diag-business-name" name="businessName" class="form-control" placeholder="Ej. Café Origen Andino" required>
+              </div>
+              <div class="form-group col-half">
+                <label for="diag-business-sector">Sector Económico: *</label>
+                <select id="diag-business-sector" name="sector" class="form-control" required>
+                  <option value="">Selecciona tu sector</option>
+                  <option value="Gastronomía">Gastronomía (Cafetería, Restaurante, Panadería)</option>
+                  <option value="Comercio Minorista">Comercio Minorista (Ropa, Calzado, Variedades, Ferretería)</option>
+                  <option value="Manufactura">Manufactura Local (Confección, Alimentos empacados, Muebles)</option>
+                  <option value="Servicios">Servicios Locales (Reparaciones, Belleza, Consultoría)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="diag-business-city">Ciudad de Operación: *</label>
+                <select id="diag-business-city" name="city" class="form-control" required>
+                  <option value="Bogotá">Bogotá D.C.</option>
+                  <option value="Medellín">Medellín</option>
+                  <option value="Cali">Cali</option>
+                  <option value="Barranquilla">Barranquilla</option>
+                  <option value="Bucaramanga">Bucaramanga</option>
+                  <option value="Pereira">Pereira</option>
+                  <option value="Otra">Otra ciudad / municipio</option>
+                </select>
+              </div>
+              <div class="form-group col-half">
+                <label for="diag-business-size">Tamaño del Equipo de Trabajo: *</label>
+                <select id="diag-business-size" name="teamSize" class="form-control" required>
+                  <option value="1-3">1 a 3 personas (Microempresa familiar)</option>
+                  <option value="4-10">4 a 10 empleados</option>
+                  <option value="11-30">11 a 30 empleados</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-contact-name">Nombre de la persona que realiza el diagnóstico: *</label>
+              <input type="text" id="diag-contact-name" name="contactName" class="form-control" placeholder="Ej. Carlos Mendoza (Propietario / Administrador)" required>
+            </div>
+          </div>
+
+          <!-- Paso 2: Estado Actual y Canales -->
+          <div class="wizard-step" id="step-2" role="tabpanel" aria-labelledby="stepper-step-2" hidden>
+            <div class="step-heading">
+              <h2>Paso 2: Canales Actuales de Venta y Gestión</h2>
+              <p>Queremos saber cómo interactúas hoy con tus clientes y registras las operaciones.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-web-presence">Presencia actual en Internet: *</label>
+              <select id="diag-web-presence" name="webPresence" class="form-control" required>
+                <option value="ninguna">No tenemos página web ni presencia estructurada</option>
+                <option value="redes">Solo perfil en Instagram o página de Facebook</option>
+                <option value="web_desactualizada">Tenemos una página web antigua que nadie actualiza</option>
+                <option value="catalogo_basico">Usamos un catálogo en PDF que enviamos por WhatsApp</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-orders-channel">Canal principal por el cual recibes pedidos: *</label>
+              <select id="diag-orders-channel" name="ordersChannel" class="form-control" required>
+                <option value="whatsapp_manual">Chat directo de WhatsApp respondiendo mensaje a mensaje</option>
+                <option value="mostrador">Únicamente en el mostrador físico / local comercial</option>
+                <option value="telefono">Llamadas telefónicas tradicionales</option>
+                <option value="redes_mensajes">Mensajes directos de Instagram o Facebook</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-customer-records">¿Cómo registras a tus clientes y las ventas diarias?: *</label>
+              <select id="diag-customer-records" name="customerRecords" class="form-control" required>
+                <option value="libreta">En libreta de papel o cuaderno físico</option>
+                <option value="memoria">En la memoria del equipo o no se registran</option>
+                <option value="excel">En una hoja básica de cálculo (Excel / Google Sheets)</option>
+                <option value="software_basico">En un sistema POS o software contable local</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-payment-methods">Métodos de pago que aceptas habitualmente: *</label>
+              <select id="diag-payment-methods" name="paymentMethods" class="form-control" required>
+                <option value="efectivo_transferencia">Efectivo y transferencias directas (Nequi, Daviplata, Bancolombia)</option>
+                <option value="datafono">Efectivo, Nequi y datáfono físico local</option>
+                <option value="online">Pasarela de pago online en página web</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Paso 3: Dolor Operativo Principal -->
+          <div class="wizard-step" id="step-3" role="tabpanel" aria-labelledby="stepper-step-3" hidden>
+            <div class="step-heading">
+              <h2>Paso 3: Reto y Cuello de Botella Operativo</h2>
+              <p>Identifica la dificultad que más tiempo o dinero le cuesta a tu negocio.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-primary-pain">Principal dolor operativo detectado: *</label>
+              <select id="diag-primary-pain" name="primaryPain" class="form-control" required>
+                <option value="pedidos_desorden">Atención manual caótica por WhatsApp y pedidos desordenados</option>
+                <option value="sin_visibilidad">Falta de catálogo digital interactivo y presencia en Google</option>
+                <option value="descontrol_stock">Descontrol en el stock de inventario y pérdida de trazabilidad</option>
+                <option value="cotizaciones_lentas">Tiempo excesivo preparando cotizaciones repetitivas</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-pain-impact">¿Qué impacto tiene este problema en tu negocio?: *</label>
+              <select id="diag-pain-impact" name="painImpact" class="form-control" required>
+                <option value="grave">Grave: Perdemos ventas y clientes por responder tarde o no tener inventario</option>
+                <option value="moderado">Moderado: Nos quita entre 2 y 4 horas diarias que podríamos dedicar a producir</option>
+                <option value="leve">Leve: Queremos modernizarnos para no quedarnos atrás frente a competidores</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-priority">Prioridad de solución para la empresa: *</label>
+              <select id="diag-priority" name="priority" class="form-control" required>
+                <option value="alta">Urgente (Se requiere resolver en menos de 1 mes)</option>
+                <option value="media">Media (Podemos implementarlo en 1 a 2 meses)</option>
+                <option value="planeacion">Planificación (Para el próximo trimestre)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Paso 4: Metas & Inversión -->
+          <div class="wizard-step" id="step-4" role="tabpanel" aria-labelledby="stepper-step-4" hidden>
+            <div class="step-heading">
+              <h2>Paso 4: Solución Esperada y Presupuesto Referencial</h2>
+              <p>Define tus expectativas para calcular una recomendación adaptada a tu presupuesto.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="diag-expected-solution">Tipo de solución digital que visualizas: *</label>
+              <select id="diag-expected-solution" name="expectedSolution" class="form-control" required>
+                <option value="catalogo_whatsapp">Catálogo digital responsive con pedidos estructurados a WhatsApp</option>
+                <option value="web_corporativa">Página web institucional con catálogo y geolocalización en Google Maps</option>
+                <option value="control_inventario">Sistema web local para control de inventario, productos y ventas diarias</option>
+                <option value="cotizador_automatico">Generador web de cotizaciones automáticas en PDF o mensaje estructurado</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-half">
+                <label for="diag-budget-range">Rango de presupuesto estimado en COP: *</label>
+                <select id="diag-budget-range" name="budgetRange" class="form-control" required>
+                  <option value="400000-700000">$400.000 - $700.000 COP (Solución básica / fase 1)</option>
+                  <option value="700000-1100000" selected>$700.000 - $1.100.000 COP (Solución estándar recomendada)</option>
+                  <option value="1100000-1800000">$1.100.000 - $1.800.000 COP (Solución integral)</option>
+                </select>
+              </div>
+              <div class="form-group col-half">
+                <label for="diag-expected-timeline">Tiempo esperado de desarrollo: *</label>
+                <select id="diag-expected-timeline" name="expectedTimeline" class="form-control" required>
+                  <option value="2-3">2 a 3 semanas (Alcance acotado)</option>
+                  <option value="3-5" selected>3 a 5 semanas (Recomendado)</option>
+                  <option value="6+">6 semanas o más</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-feedback" id="wizard-feedback" role="alert" aria-live="polite"></div>
+          </div>
+
+          <!-- Botonera de Navegación del Asistente -->
+          <div class="wizard-actions">
+            <button type="button" class="btn btn-secondary" id="btn-wizard-prev" disabled>← Anterior</button>
+            <button type="button" class="btn btn-primary" id="btn-wizard-next">Siguiente Paso →</button>
+            <button type="submit" class="btn btn-accent" id="btn-wizard-submit" hidden>Procesar Diagnóstico Digital</button>
+          </div>
+        </form>
+
+        <!-- Pantalla de Procesamiento / Loading (<3 segundos) -->
+        <div class="diagnosis-processing" id="diagnosis-processing" hidden aria-live="assertive">
+          <div class="processing-spinner"></div>
+          <h3>Analizando variables de digitalización...</h3>
+          <p class="processing-status-text" id="processing-status-text">Evaluando sector, dolor operativo y compatibilidad de talento...</p>
+        </div>
+
+        <!-- Panel de Resultados del Diagnóstico -->
+        <div class="diagnosis-results" id="diagnosis-results" hidden aria-live="polite">
+          <div class="results-header">
+            <div class="results-title-group">
+              <span class="badge-madurez" id="diag-maturity-badge">Madurez: Inicial</span>
+              <h2 id="diag-business-result-title">Diagnóstico Digital: Café Origen Andino</h2>
+              <p id="diag-summary-text">Resumen de evaluación técnica y oportunidades de modernización.</p>
+            </div>
+            <div class="score-meter" id="diag-score-meter">
+              <span class="score-label">Puntaje de Madurez Digital</span>
+              <div class="score-bar-bg">
+                <div class="score-bar-fill" id="diag-score-bar"></div>
+              </div>
+              <strong class="score-number" id="diag-score-value">30 / 100</strong>
+            </div>
+          </div>
+
+          <!-- Lista de Cuellos de Botella Detectados -->
+          <div class="results-section">
+            <h3>Cuellos de Botella Identificados</h3>
+            <ul class="problems-list" id="diag-problems-list">
+              <!-- Renderizado dinámico -->
+            </ul>
+          </div>
+
+          <!-- Soluciones Recomendadas -->
+          <div class="results-section">
+            <h3>Solución Tecnológica Recomendada</h3>
+            <div class="recommendations-grid" id="diag-recommendations">
+              <!-- Renderizado dinámico -->
+            </div>
+          </div>
+
+          <!-- Estudiantes Compatibles con este Diagnóstico -->
+          <div class="results-section">
+            <h3>Talento Estudiantil Compatible (Matching %)</h3>
+            <p class="section-hint">Estudiantes de software con el stack técnico exacto para desarrollar esta solución.</p>
+            <div class="matched-students-grid" id="diag-matched-students">
+              <!-- Renderizado dinámico -->
+            </div>
+          </div>
+
+          <!-- Acciones Finales del Diagnóstico -->
+          <div class="results-actions">
+            <button type="button" class="btn btn-primary btn-lg" id="btn-save-diagnostic">Guardar en Mi Panel de Empresa</button>
+            <a href="registro.html" class="btn btn-secondary btn-lg" id="btn-diag-register">Registrar Empresa para Iniciar Proyecto</a>
+            <button type="button" class="btn btn-ghost" id="btn-restart-diagnostic">Realizar Nuevo Diagnóstico</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a class="brand-logo" href="../index.html">CODE<span class="logo-dot">.</span></a>
+        <p>Iniciativa de conexión técnica para el desarrollo productivo colombiano.</p>
+      </div>
+      <div class="footer-legal">
+        <p class="copyright">© 2026 CODE. Jared Arenas, Frederick Vargas, Jair Viloria. Demostración Académica.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,912 @@
+/* ==========================================================================
+   CODE — Plataforma de Conexión entre MiPyMes y Talento Tecnológico
+   Archivo: css/dashboard.css
+   Descripción: Layouts de dashboard (Empresa, Estudiante, Administrador),
+                Wizard de diagnóstico, Stepper de 4 pasos, Medidor de madurez,
+                Métricas, Tablas y Tarjetas de Matching.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. LAYOUT PRINCIPAL DE DASHBOARDS (Sidebar + Topbar + Main)
+   -------------------------------------------------------------------------- */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.dashboard-sidebar {
+  width: 280px;
+  background-color: var(--bg-subtle);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 900;
+  flex-shrink: 0;
+}
+
+.sidebar-brand {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-user-preview {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.user-role-badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  background-color: rgba(0, 229, 153, 0.12);
+  color: var(--accent-signal);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.35rem;
+}
+
+.badge-admin {
+  background-color: rgba(255, 102, 51, 0.15);
+  color: var(--accent-warm);
+}
+
+.sidebar-user-preview strong {
+  font-size: 0.95rem;
+  color: #FFFFFF;
+}
+
+.sidebar-user-preview small {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1.25rem 0.75rem;
+  overflow-y: auto;
+}
+
+.sidebar-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.sidebar-nav-item:hover {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.sidebar-nav-item.is-active {
+  background-color: var(--bg-surface-elevated);
+  color: var(--accent-signal);
+  font-weight: 600;
+  border-left: 3px solid var(--accent-signal);
+}
+
+.nav-icon {
+  font-size: 1.1rem;
+}
+
+.nav-divider {
+  height: 1px;
+  background-color: var(--border-subtle);
+  margin: 0.75rem 0;
+}
+
+.sidebar-footer {
+  padding: 1rem 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.dashboard-content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dashboard-topbar {
+  height: var(--header-height);
+  background-color: rgba(13, 15, 18, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 800;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+.user-greeting h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.user-greeting p {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   2. REJILLA DE MÉTRICAS CUANTITATIVAS
+   -------------------------------------------------------------------------- */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.metrics-grid .metric-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.metrics-grid .metric-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--border-subtle);
+}
+
+.metrics-grid .metric-card:hover::before {
+  background-color: var(--accent-signal);
+}
+
+.metric-label {
+  font-size: 0.825rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.metric-trend {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   3. TARJETAS DE SECCIÓN EN DASHBOARDS (Section Cards)
+   -------------------------------------------------------------------------- */
+.section-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.section-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 1rem;
+}
+
+.header-titles h2 {
+  font-size: 1.25rem;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+
+.header-titles p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.header-filter-tools {
+  min-width: 180px;
+}
+
+.request-form {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. ASISTENTE DE DIAGNÓSTICO DIGITAL (diagnostico.html)
+   -------------------------------------------------------------------------- */
+.diagnostic-main {
+  flex: 1;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.diagnostic-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.diagnostic-intro {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.intro-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--accent-signal);
+  background-color: rgba(0, 229, 153, 0.12);
+  border: 1px solid rgba(0, 229, 153, 0.35);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.diagnostic-intro h1 {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.diagnostic-intro p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.wizard-container {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Stepper de 4 Pasos */
+.wizard-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 2.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  position: relative;
+  z-index: 2;
+  opacity: 0.45;
+  transition: opacity var(--transition-fast);
+}
+
+.step-item.is-active {
+  opacity: 1;
+}
+
+.step-item.is-completed {
+  opacity: 0.85;
+}
+
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--bg-subtle);
+  border: 2px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.step-item.is-active .step-circle {
+  border-color: var(--accent-signal);
+  background-color: var(--bg-surface-elevated);
+  color: var(--accent-signal);
+  box-shadow: 0 0 12px var(--accent-signal-glow);
+}
+
+.step-item.is-completed .step-circle {
+  border-color: var(--accent-signal);
+  background-color: var(--accent-signal);
+  color: var(--text-inverse);
+}
+
+.step-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.step-item.is-active .step-label {
+  color: #FFFFFF;
+}
+
+.wizard-step {
+  display: none;
+}
+
+.wizard-step.is-visible {
+  display: block;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.step-heading {
+  margin-bottom: 2rem;
+}
+
+.step-heading h2 {
+  font-size: 1.35rem;
+  color: #FFFFFF;
+  margin-bottom: 0.4rem;
+}
+
+.step-heading p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.wizard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   5. PANTALLA DE PROCESAMIENTO / LOADING (< 3 SEGUNDOS)
+   -------------------------------------------------------------------------- */
+.diagnosis-processing {
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.processing-spinner {
+  width: 52px;
+  height: 52px;
+  border: 4px solid var(--border-subtle);
+  border-top-color: var(--accent-signal);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.diagnosis-processing h3 {
+  font-size: 1.35rem;
+  color: #FFFFFF;
+}
+
+.processing-status-text {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent-signal);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   6. RESULTADOS DEL DIAGNÓSTICO DIGITAL & MEDIDOR DE MADUREZ
+   -------------------------------------------------------------------------- */
+.diagnosis-results {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+.results-title-group h2 {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  margin: 0.4rem 0 0.25rem;
+}
+
+.results-title-group p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.badge-madurez {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  background-color: rgba(255, 102, 51, 0.15);
+  color: var(--accent-warm);
+  border: 1px solid rgba(255, 102, 51, 0.4);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.score-meter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  min-width: 200px;
+}
+
+.score-label {
+  font-size: 0.775rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.score-bar-bg {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-surface-elevated);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-warm), var(--accent-signal));
+  border-radius: var(--radius-pill);
+  transition: width 0.8s ease-in-out;
+}
+
+.score-number {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.results-section {
+  margin-bottom: 2.25rem;
+}
+
+.results-section h3 {
+  font-size: 1.2rem;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-hint {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.problems-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.problems-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.problems-list li::before {
+  content: "⚠️";
+  position: absolute;
+  left: 0;
+  font-size: 0.85rem;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.recommendation-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--accent-signal);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.rec-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.rec-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.rec-metrics {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-top: auto;
+}
+
+.rec-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.rec-metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.rec-metric-val {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-signal);
+}
+
+.rec-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. TARJETAS DE CANDIDATOS COMPATIBLES (MATCHING %)
+   -------------------------------------------------------------------------- */
+.matched-students-grid, .candidates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.student-match-card, .candidate-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.student-match-card:hover, .candidate-card:hover {
+  border-color: var(--accent-signal);
+  transform: translateY(-2px);
+}
+
+.student-match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.student-info strong {
+  display: block;
+  font-size: 1.05rem;
+  color: #FFFFFF;
+}
+
+.student-info small {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.match-score-badge {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background-color: rgba(0, 229, 153, 0.15);
+  color: var(--accent-signal);
+  border: 1px solid rgba(0, 229, 153, 0.35);
+  letter-spacing: -0.01em;
+}
+
+.student-match-body {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 1.25rem;
+}
+
+.student-match-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.student-hours {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  color: var(--text-muted);
+}
+
+.results-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   8. LISTAS DE SOLICITUDES Y POSTULACIONES EN DASHBOARDS
+   -------------------------------------------------------------------------- */
+.requests-list, .diagnostics-history, .opportunities-list, .applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.request-item-card, .history-item-card, .opportunity-item-card, .application-item-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  transition: border-color var(--transition-fast);
+}
+
+.request-item-card:hover, .opportunity-item-card:hover {
+  border-color: var(--border-strong);
+}
+
+.item-main-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.item-main-info h4 {
+  font-size: 1.05rem;
+  color: #FFFFFF;
+}
+
+.item-main-info p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.item-meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.status-badge.diagnosticado {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: var(--accent-tech);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.status-badge.en_matching {
+  background-color: rgba(255, 176, 32, 0.15);
+  color: var(--accent-warning);
+  border: 1px solid rgba(255, 176, 32, 0.35);
+}
+
+.status-badge.conectado {
+  background-color: rgba(0, 229, 153, 0.15);
+  color: var(--accent-signal);
+  border: 1px solid rgba(0, 229, 153, 0.35);
+}
+
+.status-badge.pendiente {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   9. TABLAS ADMINISTRATIVAS ACCESIBLES (administrador.html)
+   -------------------------------------------------------------------------- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.admin-table th {
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-strong);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.admin-user-card {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.admin-user-card strong {
+  font-size: 0.95rem;
+  color: #FFFFFF;
+}
+
+.admin-user-card small {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
